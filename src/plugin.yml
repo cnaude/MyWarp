@@ -1,0 +1,170 @@
+name: MyWarp
+version: 3.0
+author: thee
+authors:
+  - tkelly
+  - flames
+  - spathizilla
+  - mung3r
+  - cnaude
+softdepend:
+  - Vault
+main: me.taylorkelly.mywarp.MyWarp
+commands:
+  warp:
+    aliases: ['mywarp', 'mw']
+    description: All of the MyWarp commands
+    usage: /<command> help - Displays the help for MyWarp
+permissions:
+  mywarp.admin.accessall:
+    description: Can access all warps
+    default: op
+  mywarp.admin.modifyall:
+    description: Can modify all warps
+    default: op
+  mywarp.admin.import:
+    description: Can import warps from MySQL or SQLite
+    default: op
+  mywarp.admin.reload:
+    description: Can reload the configuration
+    default: op
+  mywarp.admin.warpto:
+    description: Can warp other players to warps
+    default: op
+  mywarp.warp.basic.warp:
+    description: Usage of /warp
+    default: op
+  mywarp.warp.basic.delete:
+    description: Can delete warps
+    default: op
+  mywarp.warp.basic.list:
+    description: Can list warps
+    default: op
+  mywarp.warp.basic.welcome:
+    description: Can change the welcome message
+    default: op
+  mywarp.warp.basic.search:
+    description: Can search for a warp
+    default: op
+  mywarp.warp.basic.createprivate:
+    description: Allowed to create private warps
+    default: op
+  mywarp.warp.basic.createpublic:
+    description: Allowed to create public warps
+    default: op
+  mywarp.warp.basic.update:
+    description: Allowed to update warps
+    default: op
+  mywarp.warp.basic.compass:
+    description: Compass can be used
+    default: op
+  mywarp.warp.soc.give:
+    description: Can give to your /warp
+    default: op
+  mywarp.warp.soc.invite.player:
+    description: Can invite players to your /warp
+    default: op
+  mywarp.warp.soc.invite.group:
+    description: Can invite groups to your /warp
+    default: op
+  mywarp.warp.soc.invite:
+    description: Can invite players and groups to your /warp
+    children:
+      mywarp.warp.soc.invite.player: true
+      mywarp.warp.soc.invite.group: true
+  mywarp.warp.soc.uninvite.player:
+    description: Can uninvite players from your /warp
+    default: op
+  mywarp.warp.soc.uninvite.group:
+    description: Can uninvite groups from your /warp
+    default: op
+  mywarp.warp.soc.uninvite:
+    description: Can uninvite players and groups from your /warp
+    children:
+      mywarp.warp.soc.uninvite.player: true
+      mywarp.warp.soc.uninvite.group: true
+  mywarp.warp.soc.public:
+    description: Allow anyone to use your /warp
+    default: op
+  mywarp.warp.soc.private:
+    description: Disallow anyone to use your /warp
+    default: op
+  mywarp.warp.sign.warp:
+    description: Can use sign warps
+    default: op
+  mywarp.warp.sign.create:
+    description: Can make sign warps
+    default: op
+  mywarp.warp.world.currentworld:
+    description: Can warp inside of worlds but not across them
+    default: op
+  mywarp.limit.total.unlimited:
+    description: Can disobey total limit for warp creation
+    default: op
+  mywarp.limit.private.unlimited:
+    description: Can disobey limit for warp private creation
+    default: op
+  mywarp.limit.public.unlimited:
+    description: Can disobey limit for warp public creation
+    default: op
+  mywarp.cooldown.disobey:
+    description: Can disobey any cooldown
+    default: op
+  mywarp.warmup.disobey:
+    description: Can disobey any warmup
+    default: op
+  mywarp.warmup.disobey.dmgabort:
+    description: Can take damage while warming up
+    default: op
+  mywarp.warmup.disobey.moveabort:
+    description: Can move damage while warming up
+    default: op
+  mywarp.limit.unlimited:
+    description: Can disobey all limits for warp creation
+    children:
+      mywarp.limit.total.unlimited: true
+      mywarp.limit.private.unlimited: true
+      mywarp.limit.public.unlimited: true
+  mywarp.admin.*:
+       mywarp.admin.accessAll: true
+       mywarp.admin.modifyAll: true
+       mywarp.admin.import: true
+       mywarp.admin.reload: true
+       mywarp.admin.warpto: true
+  mywarp.warp.basic.*:
+    description: Basic /warp commands
+    children:
+      mywarp.warp.basic.warp: true
+      mywarp.warp.basic.delete: true
+      mywarp.warp.basic.list: true
+      mywarp.warp.basic.welcome: true
+      mywarp.warp.basic.search: true
+      mywarp.warp.basic.createprivate: true
+      mywarp.warp.basic.createpublic: true
+      mywarp.warp.basic.update: true
+      mywarp.warp.basic.compass: true
+  mywarp.warp.soc.*:
+    description: Social /warp commands
+    children:
+      mywarp.warp.soc.give: true
+      mywarp.warp.soc.invite: true
+      mywarp.warp.soc.uninvite: true
+      mywarp.warp.soc.public: true
+      mywarp.warp.soc.private: true
+  mywarp.warp.sign.*:
+    description: All sign based warp permissions
+    children:
+      mywarp.warp.sign.warp: true
+      mywarp.warp.sign.create: true
+  mywarp.warp.*:
+    description: All user permissions
+    children:
+      mywarp.warp.world.*: true
+      mywarp.warp.soc.*: true
+      mywarp.warp.sign.*: true
+      mywarp.warp.basic.*: true
+  mywarp.*:
+    description: Full access
+    children:
+      mywarp.warp.*: true
+      mywarp.admin.*: true

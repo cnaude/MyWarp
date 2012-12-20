@@ -1,0 +1,40 @@
+settings:
+  controlWorldAccess: false
+  loadChunks: false
+  warpEffect: true
+locale:
+  locale: en_US
+warpSafety:
+  enabled: true
+  searchRadius: 5
+  verticalTolerance: 5
+limits:
+  enabled: true
+  default:
+    maxTotal: 15
+    maxPublic: 5
+    maxPrivate: 10
+  user:
+    maxTotal: 8
+    maxPublic: 4
+    maxPrivate: 4
+timers:
+  enabled: false
+  coolDownNotify: false
+  warmUpNotify: true
+  abortOnMove: false
+  abortOnDamage: false
+  cooldowns:
+    default: 15
+    user: 30
+  warmups:
+    default: 15
+    user: 30
+mysql:
+  enabled: false
+  host: 'localhost'
+  port: 3306
+  database: 'minecraft'
+  table: 'warpTable'
+  username: 'root'
+  password: 'password'
