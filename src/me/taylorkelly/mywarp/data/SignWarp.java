@@ -2,6 +2,7 @@ package me.taylorkelly.mywarp.data;
 
 import me.taylorkelly.mywarp.LanguageManager;
 import me.taylorkelly.mywarp.WarpSettings;
+import org.apache.commons.lang.StringUtils;
 
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
@@ -13,8 +14,13 @@ public class SignWarp {
      * Precondition: Only call if isSignWarp() returned true
      */
     public static void warpSign(Sign sign, WarpList list, Player player) {
-        String name = sign.getLine(2);
-        
+        String lines[] = {
+            sign.getLine(1),
+            sign.getLine(2),
+            sign.getLine(3)
+        };
+        String name = StringUtils.join(lines);
+
         if (!list.warpExists(name)) {
             player.sendMessage(LanguageManager.getString(
                     "error.noSuchWarp").replaceAll("%warp%", name));
@@ -38,11 +44,11 @@ public class SignWarp {
     }
 
     public static void createSignWarp(SignChangeEvent sign) {
-        sign.setLine(1, "[MyWarp]");
+        sign.setLine(0, "[MyWarp]");
     }
 
     public static boolean isSignWarp(Sign sign) {
-        if (sign.getLine(1).equalsIgnoreCase("MyWarp") || sign.getLine(1).equalsIgnoreCase("[MyWarp]")) {
+        if (sign.getLine(0).equalsIgnoreCase("MyWarp") || sign.getLine(0).equalsIgnoreCase("[MyWarp]")) {
             return true;
         } else {
             return false;
@@ -50,6 +56,10 @@ public class SignWarp {
     }
 
     public static boolean isSignWarp(SignChangeEvent sign) {
-        return sign.getLine(1).equalsIgnoreCase("[MyWarp]");
+        if (sign.getLine(0).equalsIgnoreCase("MyWarp") || sign.getLine(0).equalsIgnoreCase("[MyWarp]")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

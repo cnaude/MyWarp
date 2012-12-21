@@ -24,7 +24,7 @@ public class WarpList {
         welcomeMessage = new HashMap<String, Warp>();
         this.server = server;
         warpList = MyWarp.connectionManager.getMap();
-        WarpLogger.info(getSize() + " warps loaded");
+        WarpLogger.info(warpList.size() + " warps loaded");
     }
 
     public void addWarp(String name, Warp warp) {
@@ -52,6 +52,20 @@ public class WarpList {
         MyWarp.connectionManager.deleteWarp(warp);
     }
 
+    public String getMatche(String name) {
+        for (Warp warp : warpList.values()) {
+            if (name.equals(name)) {
+                return warp.name;
+            }
+        }
+        for (Warp warp : warpList.values()) {
+            if (name.startsWith(name)) {
+                return warp.name;
+            }
+        }
+        return "";
+    }
+    
     public String getMatche(String name, Player player) {
         MatchList matches = this.getMatches(name, player);
         return matches.getMatch(name);
@@ -214,8 +228,9 @@ public class WarpList {
         for (Warp warp : warpList.values()) {
             boolean privateAll = !warp.publicAll;
             String creator = warp.creator;
-            if (creator.equals(player.getName()) && privateAll)
+            if (creator.equals(player.getName()) && privateAll) {
                 size++;
+            }
         }
         return size;
     }
@@ -225,8 +240,9 @@ public class WarpList {
         for (Warp warp : warpList.values()) {
             boolean publicAll = warp.publicAll;
             String creator = warp.creator;
-            if (creator.equals(player.getName()) && publicAll)
+            if (creator.equals(player.getName()) && publicAll) {
                 size++;
+            }
         }
         return size;
     }
@@ -235,8 +251,9 @@ public class WarpList {
         int size = 0;
         for (Warp warp : warpList.values()) {
             String creator = warp.creator;
-            if (creator.equals(player.getName()))
+            if (creator.equals(player.getName())) {
                 size++;
+            }
         }
         return size;
     }

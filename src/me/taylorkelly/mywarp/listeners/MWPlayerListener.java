@@ -57,18 +57,15 @@ public class MWPlayerListener implements Listener {
                     return;
                 }
 
-                org.bukkit.material.Sign signMat = (org.bukkit.material.Sign) behind
-                        .getState().getData();
+                org.bukkit.material.Sign signMat = (org.bukkit.material.Sign) behind.getState().getData();
                 Sign signBut = (Sign) behind.getState();
 
-                if (!(signMat.getFacing() == attachable.getAttachedFace() && SignWarp
-                        .isSignWarp(signBut))) {
+                if (!(signMat.getFacing() == attachable.getAttachedFace() && SignWarp.isSignWarp(signBut))) {
                     return;
                 }
 
                 if (!warpPermissions.signWarp(event.getPlayer())) {
-                    event.getPlayer().sendMessage(
-                            LanguageManager.getString("sign.noPermission.use"));
+                    event.getPlayer().sendMessage(LanguageManager.getString("sign.noPermission.use"));
                     return;
                 }
                 SignWarp.warpSign(signBut, this.warpList, event.getPlayer());
@@ -88,8 +85,7 @@ public class MWPlayerListener implements Listener {
                 }
 
                 if (!warpPermissions.signWarp(event.getPlayer())) {
-                    event.getPlayer().sendMessage(
-                            LanguageManager.getString("sign.noPermission.use"));
+                    event.getPlayer().sendMessage(LanguageManager.getString("sign.noPermission.use"));
                     return;
                 }
                 SignWarp.warpSign(signBelow, this.warpList, event.getPlayer());

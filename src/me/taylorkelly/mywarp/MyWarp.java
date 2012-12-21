@@ -86,7 +86,7 @@ public class MyWarp extends JavaPlugin {
         }
 
         warpList = new WarpList(getServer());
-        warpPermissions = new WarpPermissions(this);
+        warpPermissions = new WarpPermissions();
         blockListener = new MWBlockListener(this);
         entityListener = new MWEntityListener();
         playerListener = new MWPlayerListener(this);

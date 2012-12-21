@@ -29,48 +29,37 @@ public class WarpToCommand extends BasicCommand implements Command {
     }
 
     @Override
-    public boolean execute(final CommandSender executor, String identifier,
-            final String[] args) {
+    public boolean execute(final CommandSender executor, String identifier, final String[] args) {
         if (executor instanceof Player) {
             Player player = (Player) executor;
-            String name = plugin.getWarpList().getMatche(
-                    StringUtils.join(args, ' '), player);
+            String name = plugin.getWarpList().getMatche(StringUtils.join(args, ' '), player);
 
             if (!plugin.getWarpList().warpExists(name)) {
-                player.sendMessage(LanguageManager
-                        .getString("error.noSuchWarp").replaceAll("%warp%",
-                                name));
+                player.sendMessage(LanguageManager.getString("error.noSuchWarp").replaceAll("%warp%",name));
                 return true;
             }
 
             Warp warp = plugin.getWarpList().getWarp(name);
 
             if (!warp.playerCanWarp(player)) {
-                player.sendMessage(LanguageManager.getString(
-                        "error.noPermission.warpto").replaceAll("%warp%", name));
+                player.sendMessage(LanguageManager.getString("error.noPermission.warpto").replaceAll("%warp%", name));
                 return true;
             }
 
-            if (WarpSettings.worldAccess
-                    && !plugin.getWarpList().playerCanAccessWorld(player,
-                            warp.world)) {
-                player.sendMessage(LanguageManager.getString(
-                        "error.noPermission.world").replaceAll("%world%",
-                        warp.world));
+            if (WarpSettings.worldAccess && !plugin.getWarpList().playerCanAccessWorld(player,warp.world)) {
+                player.sendMessage(LanguageManager.getString("error.noPermission.world").replaceAll("%world%",warp.world));
                 return true;
             }
 
             if (WarpSettings.useTimers) {
-                Cooldown cooldown = MyWarp.getWarpPermissions().getCooldown(
-                        player);
+                Cooldown cooldown = MyWarp.getWarpPermissions().getCooldown(player);
                 Warmup warmup = MyWarp.getWarpPermissions().getWarmup(player);
 
                 if (PlayerCooldown.isActive(player.getName())) {
                     player.sendMessage(LanguageManager.getString(
                             "timer.cooldown.cooling").replaceAll(
                             "%seconds%",
-                            Integer.toString(PlayerCooldown
-                                    .getRemainingTime(player.getName()))));
+                            Integer.toString(PlayerCooldown.getRemainingTime(player.getName()))));
                     return true;
                 }
 
@@ -110,8 +99,7 @@ public class WarpToCommand extends BasicCommand implements Command {
                 return true;
             }
         } else {
-            executor.sendMessage(LanguageManager
-                    .getString("error.consoleSender.warpto"));
+            executor.sendMessage(LanguageManager.getString("error.consoleSender.warpto"));
             return true;
         }
     }

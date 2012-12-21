@@ -6,14 +6,8 @@ import me.taylorkelly.mywarp.timer.Cooldown;
 import me.taylorkelly.mywarp.timer.Warmup;
 
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 
 public class WarpPermissions {
-    private PermissionsHandler permissionsHandler;
-
-    public WarpPermissions(Plugin plugin) {
-        permissionsHandler = new PermissionsHandler(plugin);
-    }
 
     public boolean hasPermission(Player player, final String node) {
         return player.hasPermission(node);
