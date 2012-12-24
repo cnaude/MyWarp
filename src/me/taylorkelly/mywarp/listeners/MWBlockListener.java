@@ -43,19 +43,17 @@ public class MWBlockListener implements Listener {
                 }
                 Warp warp = warpList.getWarp(name);
 
+                /* Wh are we cheking this ?
                 if (!warp.playerCanModify(player)) {
-                    player.sendMessage(LanguageManager.getString(
-                            "sign.noPermission.create").replaceAll("%warp%",
-                            name));
+                    player.sendMessage(LanguageManager.getString("sign.noPermission.create").replaceAll("%warp%",name));
                     event.setCancelled(true);
                     event.getBlock().breakNaturally();
                     return;
-                }
+                } */
                 SignWarp.createSignWarp(event);
                 player.sendMessage(LanguageManager.getString("sign.created"));
             } else {
-                player.sendMessage(LanguageManager
-                        .getString("sign.noPermission.create"));
+                player.sendMessage(LanguageManager.getString("sign.noPermission.create"));
                 event.setCancelled(true);
                 event.getBlock().breakNaturally();
             }

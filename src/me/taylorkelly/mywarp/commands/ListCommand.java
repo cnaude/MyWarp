@@ -55,10 +55,13 @@ public class ListCommand extends BasicCommand implements Command {
             } else {
                 if (args[0].equals("own")) {
                     if (executor instanceof Player) {
-                        lister.setWarpCreator(player.getName());
+                        if (player != null) {
+                            lister.setWarpCreator(player.getName());
+                        } else {
+                            return true;
+                        }
                     } else {
-                        executor.sendMessage(LanguageManager
-                                .getString("list.console"));
+                        executor.sendMessage(LanguageManager.getString("list.console"));
                         return true;
                     }
 
@@ -67,11 +70,15 @@ public class ListCommand extends BasicCommand implements Command {
                 }
                 lister.setPage(1);
             }
-        } else if (args.length == 2) {
-            String creator = null;
+        } else if (args.length == 2 && args[1].matches("\\d+")) {
+            String creator;
             if (args[0].equals("own")) {
                 if (executor instanceof Player) {
-                    creator = player.getName();
+                    if (player != null) {
+                        creator = player.getName();
+                    } else {
+                        return true;
+                    }
                 } else {
                     executor.sendMessage(LanguageManager
                             .getString("list.console"));
